@@ -5,3 +5,5 @@ pandas
 matplotlib
 seaborn
 scipy
+requests
+feature_engine
