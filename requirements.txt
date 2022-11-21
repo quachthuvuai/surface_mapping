@@ -1,5 +1,6 @@
 streamlit
 streamlit_option_menu
+streamlit-lottie
 numpy
 pandas
 matplotlib
