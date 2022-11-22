@@ -42,9 +42,7 @@ with st.sidebar:
         df=df.drop([3, 4], axis=1)
         df.columns=['X (m)', 'Y (m)', 'Z (m)']       
         
-        X1 = df.iloc[:, 0] 
-        Y1 = df.iloc[:, 1] 
-        Z1 = df.iloc[:, 2] 
+        
 
 
 # Information about us
@@ -112,6 +110,9 @@ if (selected == 'Import and Process data'):
     #         st.info('Statistics')
     #         st.dataframe(df.describe())
 
+    X1 = df.iloc[:, 0] 
+    Y1 = df.iloc[:, 1] 
+    Z1 = df.iloc[:, 2] 
     
     # 2D dataset
     fig = plt.figure()
