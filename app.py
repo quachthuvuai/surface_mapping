@@ -10,7 +10,13 @@ from scipy.interpolate import griddata
 import requests  # pip install requests
 from streamlit_lottie import st_lottie  # pip install streamlit-lottie
 
-
+# default dataset
+df = pd.read_csv('data/map1.txt', delimiter = "\s+", skiprows=20, header=None)
+df=df.drop([3, 4], axis=1)
+df.columns=['X (m)', 'Y (m)', 'Z (m)'] 
+X1 = df.iloc[:, 0] 
+Y1 = df.iloc[:, 1] 
+Z1 = df.iloc[:, 2] 
 
 # Page setting
 st.set_page_config(layout="wide")
@@ -30,18 +36,11 @@ with st.sidebar:
     st.title(':arrow_up: Data uploading')
     # st.write('If there is no data uploaded, the default dataset will be used!')
     uploaded_file = st.file_uploader('Upload ASCII (.txt, .dat) data here:')
-    path='data/map1.txt'
-
-    # if uploaded_file is None:
-    #     df = pd.read_csv(path, delimiter = "\s+", skiprows=20, header=None)
-    #     df=df.drop([3, 4], axis=1)
-    #     df.columns=['X', 'Y', 'Z']    
-
+   
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file, delimiter = "\s+", skiprows=20, header=None)
         df=df.drop([3, 4], axis=1)
-        df.columns=['X (m)', 'Y (m)', 'Z (m)']       
-        
+        df.columns=['X (m)', 'Y (m)', 'Z (m)']        
         
 
 
@@ -99,20 +98,6 @@ if (selected == 'Import and Process data'):
         st.write('Statistics of dataset')
         st.dataframe(df.describe())
 
-    # if uploaded_file is not None:
-    #     df = pd.read_csv(uploaded_file, delimiter = "\s+", skiprows=20, header=None)
-    #     df=df.drop([3, 4], axis=1)
-    #     df.columns=['X (m)', 'Y (m)', 'Z (m)']    
-
-    #     if st.button("Show dataframe and statistics"):
-    #         st.info('Dataframe:')
-    #         st.dataframe(df.head(5))
-    #         st.info('Statistics')
-    #         st.dataframe(df.describe())
-
-    X1 = df.iloc[:, 0] 
-    Y1 = df.iloc[:, 1] 
-    Z1 = df.iloc[:, 2] 
     
     # 2D dataset
     fig = plt.figure()
